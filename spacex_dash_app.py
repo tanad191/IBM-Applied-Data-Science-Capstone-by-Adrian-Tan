@@ -8,6 +8,7 @@ import plotly.express as px
 
 # Read the airline data into pandas dataframe
 spacex_df = pd.read_csv("spacex_launch_dash.csv")
+spacex_df['Launch Site'] = spacex_df['Launch Site'].replace('CCAFS LC-40', 'CCAFS SLC-40')
 max_payload = spacex_df['Payload Mass (kg)'].max()
 min_payload = spacex_df['Payload Mass (kg)'].min()
 
@@ -24,10 +25,9 @@ app.layout = html.Div(children=[html.H1('SpaceX Launch Records Dashboard',
                                 html.Div(dcc.Dropdown(id='site-dropdown',
                                     options=[
                                         {'label': 'All Sites', 'value': 'ALL'},
-                                        {'label': 'CCAFS LC-40', 'value': 'CCAFS LC-40'},
+                                        {'label': 'CCAFS SLC-40', 'value': 'CCAFS SLC-40'},
                                         {'label': 'VAFB SLC-4E', 'value': 'VAFB SLC-4E'},
                                         {'label': 'KSC LC-39A', 'value': 'KSC LC-39A'},
-                                        {'label': 'CCAFS SLC-40', 'value': 'CCAFS SLC-40'},
                                     ],
                                     value='ALL',
                                     placeholder="Select a site...",
